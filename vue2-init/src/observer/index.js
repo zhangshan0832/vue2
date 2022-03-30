@@ -1,21 +1,23 @@
-class Observe{
-    constructor(value){
+class Observe {
+    constructor(value) {
         this.walk(value)
     }
-    walk(target){
-        Object.keys(target).forEach(key=>{
-            defineReactive(target,key,target[key])
+    walk(target) {
+        Object.keys(target).forEach(key => {
+            defineReactive(target, key, target[key])
         })
     }
 
 }
-function defineReactive(target,key,value){
-    Object.defineProperty(target,key,{
-        get(){
-            
+function defineReactive(target, key, value) {
+    Object.defineProperty(target, key, {
+        get() {
+            return value
         },
-        set(){
-
+        set(newValue) {
+            if (newValue == value) return
+            observe(newValue) // 设置的值如果是对象 继续进行劫持
+            value = newValue
         }
     })
 }

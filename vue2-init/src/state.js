@@ -1,4 +1,4 @@
-import { observe } from "./observer"
+import { observe } from "./observer/index.js"
 
 export function initState(vm) {
     const options = vm.$options
@@ -24,6 +24,7 @@ function initData(vm) {
     let data = vm.$options.data
     // 需要对用户提供的data属性把他的所有属性进行重写 增添get和set，只能拦截已经存在的属性
     console.log(data)
+    data = vm._data = typeof data === 'function' ? data.call(vm) : data
     observe(data)
 
 }
