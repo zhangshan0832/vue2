@@ -18,10 +18,12 @@
             data() {
                 return {
                     name: 'jjll',
-                    age: 12345
+                    age: 12345,
+                    arr:[1,2,3,4,5]
                 }
             }
         })
+        console.log(vm._data.arr.push([{a:123}]))
         console.log(vm._data)
     </script>
 </body>
